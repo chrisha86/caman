@@ -102,6 +102,15 @@ function command_init {
     # Initialise a new certificate authority
     #
 
+	# Initialise empty files because openssl crashes if not exists
+    if [[ -f "$CADIR/index.txt" ]] ; then
+		touch "$CADIR/index.txt"
+	fi
+    if [[ -f "$CADIR/index.txt.attr" ]] ; then
+		touch "$CADIR/index.txt.attr"
+	fi
+
+
     # Check for existing CA certificate
     if [[ -f "$CADIR/ca.crt.pem" ]] ; then
         echo "Certificate authority already exists"
